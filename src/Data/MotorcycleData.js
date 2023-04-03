@@ -45,7 +45,18 @@ export const motorcycleModels = {
   
 
   export const suspensionSettings = {
+    skills: {
+      beginner: 1,
+      intermediate: 1.2,
+      expert: 1.4,
+    },
+    trackConditions: {
+      soft: 1,
+      medium: 1.1,
+      hard: 1.2,
+    },
     'KX450': {
+      sag: 105, // Replace with the correct sag value
       forkCompression: 11,
       forkRebound: 15,
       shockCompression: 17,
@@ -58,13 +69,15 @@ export const motorcycleModels = {
       shockCompression: 12,
       shockRebound: 11,
       baseWeight: 175, // average rider weight
+      sag: 104,
     },
     'KX112': {
-      forkCompression: 12,
-      forkRebound: 10,
-      shockCompression: 12,
-      shockRebound: 10,
+      forkCompression: 11,
+      forkRebound: 0,
+      shockCompression: 14,
+      shockRebound: 9,
       baseWeight: 130, // average rider weight
+      sag: 104,
     },
     'KX85': {
       forkCompression: 12,
@@ -72,6 +85,7 @@ export const motorcycleModels = {
       shockCompression: 14,
       shockRebound: 14,
       baseWeight: 110, // average rider weight
+      sag: 104,
     },
     'KX65': {
       forkCompression: 10,
@@ -79,6 +93,7 @@ export const motorcycleModels = {
       shockCompression: 10,
       shockRebound: 10,
       baseWeight: 90, // average rider weight
+      sag: 104,
     },
     'KLX110': {
       forkCompression: 6,
@@ -86,6 +101,7 @@ export const motorcycleModels = {
       shockCompression: 6,
       shockRebound: 6,
       baseWeight: 75, // average rider weight
+      sag: 104,
     },
     'KX50': {
       forkCompression: 8,
@@ -93,6 +109,7 @@ export const motorcycleModels = {
       shockCompression: 8,
       shockRebound: 8,
       baseWeight: 60, // average rider weight
+      sag: 104,
     },
   
     // ... other dirt bike models,
@@ -103,6 +120,7 @@ export const motorcycleModels = {
       shockCompression: 7,
       shockRebound: 9,
       baseWeight: 175, // average rider weight
+      sag: 104,
     },
     'CRF250R': {
       forkCompression: 9,
@@ -110,6 +128,7 @@ export const motorcycleModels = {
       shockCompression: 7,
       shockRebound: 10,
       baseWeight: 175, // average rider weight
+      sag: 104,
     },
     'CRF150R': {
       forkCompression: 8,
@@ -117,6 +136,7 @@ export const motorcycleModels = {
       shockCompression: 8,
       shockRebound: 8,
       baseWeight: 130, // average rider weight
+      sag: 104,
     },
     'CRF110F': {
       forkCompression: 6,
@@ -124,6 +144,7 @@ export const motorcycleModels = {
       shockCompression: 6,
       shockRebound: 6,
       baseWeight: 75, // average rider weight
+      sag: 104,
     },
     'CRF50F': {
       forkCompression: 4,
@@ -131,6 +152,7 @@ export const motorcycleModels = {
       shockCompression: 4,
       shockRebound: 4,
       baseWeight: 60, // average rider weight
+      sag: 104,
     },
   
   // KTM models
@@ -140,55 +162,70 @@ export const motorcycleModels = {
   shockCompression: 12,
   shockRebound: 12,
   baseWeight: 175, // average rider weight
+  sag: 104,
   },
   '450 SX-F': {
-  forkCompression: 14,
-  forkRebound: 15,
-  shockCompression: 11,
-  shockRebound: 14,
-  baseWeight: 175, // average rider weight
+    forkCompression: 14,
+    forkRebound: 15,
+    shockCompression: 11,
+    shockRebound: 14,
+    baseWeight: 175, // average rider weight
+    airForkPressure: 152, // average air pressure between 148 and 157
+    sag: 104,
   },
   '350 EXC': {
-  forkCompression: 13,
-  forkRebound: 15,
-  shockCompression: 11,
-  shockRebound: 15,
-  baseWeight: 175, // average rider weight
+    forkCompression: 13,
+    forkRebound: 15,
+    shockCompression: 11,
+    shockRebound: 15,
+    baseWeight: 175, // average rider weight
+    airForkPressure: 152, // average air pressure between 148 and 157
+    sag: 104,
   },
   '250 SX-F': {
-  forkCompression: 12,
-  forkRebound: 16,
-  shockCompression: 12,
-  shockRebound: 13,
-  baseWeight: 175, // average rider weight
+    forkCompression: 12,
+    forkRebound: 16,
+    shockCompression: 12,
+    shockRebound: 13,
+    baseWeight: 175, // average rider weight
+    airForkPressure: 152, // average air pressure between 148 and 157
+    sag: 104,
   },
   '250 SX': {
-  forkCompression: 12,
-  forkRebound: 12,
-  shockCompression: 14,
-  shockRebound: 14,
-  baseWeight: 175, // average rider weight
+    forkCompression: 12,
+    forkRebound: 12,
+    shockCompression: 14,
+    shockRebound: 14,
+    baseWeight: 175, // average rider weight
+    airForkPressure: 152, // average air pressure between 148 and 157
+    sag: 104,
   },
   '150 SX': {
-  forkCompression: 12,
-  forkRebound: 12,
-  shockCompression: 12,
-  shockRebound: 12,
-  baseWeight: 130, // average rider weight
+    forkCompression: 12,
+    forkRebound: 12,
+    shockCompression: 12,
+    shockRebound: 12,
+    baseWeight: 130, // average rider weight
+    airForkPressure: 152, // average air pressure between 148 and 157
+    sag: 104,
   },
   '125 SX': {
-  forkCompression: 12,
-  forkRebound: 12,
-  shockCompression: 12,
-  shockRebound: 12,
-  baseWeight: 130, // average rider weight
+    forkCompression: 12,
+    forkRebound: 12,
+    shockCompression: 12,
+    shockRebound: 12,
+    baseWeight: 130, // average rider weight
+    airForkPressure: 152, // average air pressure between 148 and 157
+    sag: 104,
   },
+  
   '85 SX': {
   forkCompression: 10,
   forkRebound: 10,
   shockCompression: 10,
   shockRebound: 10,
   baseWeight: 110, // average rider weight
+  sag: 104,
   },
   '65 SX': {
   forkCompression: 8,
@@ -196,6 +233,7 @@ export const motorcycleModels = {
   shockCompression: 8,
   shockRebound: 8,
   baseWeight: 90, // average rider weight
+  sag: 104,
   },
   '50 SX': {
   forkCompression: 6,
@@ -203,6 +241,7 @@ export const motorcycleModels = {
   shockCompression: 6,
   shockRebound: 6,
   baseWeight: 60, // average rider weight
+  sag: 104,
   },
   '50 SX Mini': {
   forkCompression: 6,
@@ -210,6 +249,7 @@ export const motorcycleModels = {
   shockCompression: 6,
   shockRebound: 6,
   baseWeight: 60, // average rider weight
+  sag: 104,
   },
   
   // Suzuki models
@@ -219,6 +259,7 @@ export const motorcycleModels = {
   shockCompression: 12,
   shockRebound: 12,
   baseWeight: 175, // average rider weight
+  sag: 104,
   },
   'RM-Z250': {
   forkCompression: 12,
@@ -226,6 +267,7 @@ export const motorcycleModels = {
   shockCompression: 12,
   shockRebound: 12,
   baseWeight: 175, // average rider weight
+  sag: 104,
   },
   'RM85': {
   forkCompression: 8,
@@ -233,6 +275,7 @@ export const motorcycleModels = {
   shockCompression: 10,
   shockRebound: 10,
   baseWeight: 110, // average rider weight
+  sag: 104,
   },
   'DR-Z50': {
   forkCompression: 2,
@@ -240,6 +283,7 @@ export const motorcycleModels = {
   shockCompression: 2,
   shockRebound: 2,
   baseWeight: 60, // average rider weight
+  sag: 104,
 },
 
 // Yamaha models
@@ -249,6 +293,7 @@ forkRebound: 12,
 shockCompression: 12,
 shockRebound: 12,
 baseWeight: 175, // average rider weight
+sag: 104,
 },
 'YZ250F': {
 forkCompression: 12,
@@ -256,6 +301,7 @@ forkRebound: 12,
 shockCompression: 12,
 shockRebound: 12,
 baseWeight: 175, // average rider weight
+sag: 104,
 },
 'YZ125': {
 forkCompression: 12,
@@ -263,6 +309,7 @@ forkRebound: 12,
 shockCompression: 12,
 shockRebound: 12,
 baseWeight: 130, // average rider weight
+sag: 104,
 },
 'YZ85': {
 forkCompression: 10,
@@ -270,6 +317,7 @@ forkRebound: 10,
 shockCompression: 10,
 shockRebound: 10,
 baseWeight: 110, // average rider weight
+sag: 104,
 },
 'YZ65': {
 forkCompression: 8,
@@ -277,6 +325,7 @@ forkRebound: 8,
 shockCompression: 8,
 shockRebound: 8,
 baseWeight: 90, // average rider weight
+sag: 104,
 },
 'YZ50': {
 forkCompression: 6,
@@ -284,6 +333,7 @@ forkRebound: 6,
 shockCompression: 6,
 shockRebound: 6,
 baseWeight: 60, // average rider weight
+sag: 104,
 },
 'TTR110': {
 forkCompression: 6,
@@ -291,6 +341,7 @@ forkRebound: 6,
 shockCompression: 6,
 shockRebound: 6,
 baseWeight: 75, // average rider weight
+sag: 104,
 },
 'TTR50': {
 forkCompression: 4,
@@ -298,6 +349,7 @@ forkRebound: 4,
 shockCompression: 4,
 shockRebound: 4,
 baseWeight: 60, // average rider weight
+sag: 104,
 },
 };
 
@@ -309,4 +361,4 @@ suspensionSettings,
 };
 
 export default motorcycleData;
-// ktm 450,350, 250f, 250SX,kx 450, kx250 so far is all correct data straight from MXA
+// ktm 450,350, 250f, 250SX,kx 450, kx250, CRF 450, Crf 250 so far is all correct data straight from MXA

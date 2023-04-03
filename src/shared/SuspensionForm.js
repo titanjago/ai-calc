@@ -32,20 +32,34 @@ const SuspensionForm = () => {
     suspensionBrand: '',
   });
 
+  const BASE_WEIGHT = 170;
   const [calculatedSettings, setCalculatedSettings] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setRider((prevState) => ({ ...prevState, [name]: value }));
+  
+    if (name === "motorcycleBrand") {
+      setRider((prevState) => ({
+        ...prevState,
+        motorcycleBrand: value,
+        motorcycleModel: "",
+      }));
+    } else {
+      setRider((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
+  
 
   const motorcycleBrands = ['Honda', 'Suzuki', 'Kawasaki', 'Yamaha', 'KTM'];
   const motorcycleModels = {
     Honda: ['CRF450R', 'CRF250R', 'CRF150R', 'CRF110F', 'CRF50F'],
     Suzuki: ['RM-Z450', 'RM-Z250', 'RM85', 'DR-Z50'],
-    Kawasaki: ['KX450', 'KX250','kx112','klx110', 'KX85', 'KX65', 'KX50'],
+    Kawasaki: ['KX450', 'KX250', 'KX112', 'KLX110', 'KX85', 'KX65', 'KX50'],
     Yamaha: ['YZ450F', 'YZ250F', 'YZ250 2-stroke', 'YZ125 2-stroke', 'PW50'],
-    KTM: ['500 EXC','450 SX-F','350 SX-F', '250 SX-F', '250 SX', '150 SX', '125 SX', '85 SX', '65 SX', '50 SX Mini'],
+    KTM: ['500 EXC', '450 SX-F', '350 SX-F', '250 SX-F', '250 SX', '150 SX', '125 SX', '85 SX', '65 SX', '50 SX Mini'],
   };
 
   const handleSubmit = (event) => {
@@ -106,8 +120,6 @@ const SuspensionForm = () => {
     return Math.max(98, Math.min(110, 105 + (riderWeight / 2.2) * 0.0075 * sagSettingsRatio)).toFixed(1);
   };
 
-  
-  
   return (
     <Container maxWidth="sm">
       <Paper>
