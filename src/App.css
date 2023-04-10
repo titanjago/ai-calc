@@ -14,7 +14,7 @@
 }
 /* App.css */
 body {
-  background-image: url('./mX.png');
+  background-image: url('../src/Assets/Images/BOHlogo.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

@@ -32,7 +32,7 @@ const SuspensionForm = () => {
     suspensionBrand: '',
   });
 
-  const BASE_WEIGHT = 170;
+
   const [calculatedSettings, setCalculatedSettings] = useState(null);
 
   const handleChange = (event) => {
@@ -53,43 +53,47 @@ const SuspensionForm = () => {
   };
   
 
-  const motorcycleBrands = ['Honda', 'Suzuki', 'Kawasaki', 'Yamaha', 'KTM'];
+  const motorcycleBrands = ['Honda', 'Suzuki', 'Kawasaki', 'Yamaha', 'KTM','Cobra'];
   const motorcycleModels = {
-    Honda: ['CRF450R', 'CRF250R', 'CRF150R', 'CRF110F', 'CRF50F'],
+    Honda: ['CRF450R', 'CRF250R', 'CR250', 'CRF150R', 'CR85R', 'CRF110F', 'CRF50F'],
     Suzuki: ['RM-Z450', 'RM-Z250', 'RM85', 'DR-Z50'],
     Kawasaki: ['KX450', 'KX250', 'KX112', 'KLX110', 'KX85', 'KX65', 'KX50'],
-    Yamaha: ['YZ450F', 'YZ250F', 'YZ250 2-stroke', 'YZ125 2-stroke', 'PW50'],
-    KTM: ['500 EXC', '450 SX-F', '350 SX-F', '250 SX-F', '250 SX', '150 SX', '125 SX', '85 SX', '65 SX', '50 SX Mini'],
+    Yamaha: ['YZ450F', 'YZ250F', 'YZ250 2-stroke', 'YZ125 2-stroke','YZ85','YZ65', 'PW50'],
+    KTM: ['500 EXC', '450 SX-F', '350 SX-F', '250 SX-F', '250 SX', '150 SX', '125 SX', '85 SX', '65 SX','50 SX', '50 SX Mini'],
+    Cobra: ['Cobra 50 SX', 'Cobra 65 SX'], // Add Cobra models here
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
     // Get the base suspension settings for the selected motorcycle model
     const baseSettings = suspensionSettings[rider.motorcycleModel];
-
+  
     // Check if baseSettings is defined before proceeding
     if (!baseSettings) {
       console.error(`Base settings not found for motorcycle model: ${rider.motorcycleModel}`);
       return;
     }
-
+  
     // Apply skill level and track condition factors
     const skillFactor =
       rider.skill === "beginner" ? 1.0 : rider.skill === "intermediate" ? 0.9 : 0.8;
     const trackConditionFactor =
       rider.trackCondition === "soft" ? 0.9 : rider.trackCondition === "medium" ? 1.0 : 1.1;
-
+  
+    // Calculate riderWeight outside of sag calculation
+    const riderWeight = parseFloat(rider.weight) + baseSettings.baseWeight;
+  
     // Calculate sag based on rider's weight, skill level, and track condition factors
-    const riderWeight = parseFloat(rider.weight);
     const sagSettingsRatio = skillFactor * trackConditionFactor;
-    const sag = calculateSag(riderWeight, sagSettingsRatio);
-
+    const sag = calculateSag(riderWeight, sagSettingsRatio, baseSettings.sag);
+  
     // Perform the calculations for the best suspension settings based on the rider's input
     const highSpeedCompressionTurns = calculateHighSpeedCompressionTurns(baseSettings, riderWeight, skillFactor, trackConditionFactor);
     const lowSpeedCompression = calculateLowSpeedCompression(baseSettings, riderWeight, skillFactor, trackConditionFactor);
     const rebound = calculateRebound(baseSettings, riderWeight, skillFactor, trackConditionFactor);
-
+    const airForkPressure = calculateAirForkPressure(baseSettings, riderWeight, skillFactor, trackConditionFactor);
+  
     setCalculatedSettings({
       forkCompression: Math.round(
         baseSettings.forkCompression * skillFactor * trackConditionFactor
@@ -97,29 +101,61 @@ const SuspensionForm = () => {
       forkRebound: Math.round(
         baseSettings.forkRebound * skillFactor * trackConditionFactor
       ),
-      highSpeedCompression: highSpeedCompressionTurns.toFixed(1), // Keep the single decimal as requested
-      lowSpeedCompression: Math.round(lowSpeedCompression), // Remove decimals by using Math.round
-      rebound: Math.round(rebound), // Remove decimals by using Math.round
+      highSpeedCompression: highSpeedCompressionTurns.toFixed(1),
+      lowSpeedCompression: Math.round(lowSpeedCompression),
+      rebound: Math.round(rebound),
       sag: sag,
+      airForkPressure: airForkPressure,
     });
   };
+  
 
   const calculateHighSpeedCompressionTurns = (baseSettings, riderWeight, skillFactor, trackConditionFactor) => {
-    return Math.max(0.5, Math.min(3, baseSettings.shockCompression * 0.1 * skillFactor * trackConditionFactor));
+    const weightFactor = Math.max(5.0, Math.min(2, riderWeight / 175));
+    return Math.max(0.5, Math.min(3, baseSettings.highSpeedCompression * 0.1 * skillFactor * trackConditionFactor * weightFactor));
   };
-
+  
   const calculateLowSpeedCompression = (baseSettings, riderWeight, skillFactor, trackConditionFactor) => {
-    return baseSettings.shockCompression * 0.8 * skillFactor * trackConditionFactor;
+    const weightFactor = Math.max(0.5, Math.min(2, riderWeight / 175));
+    return baseSettings.lowSpeedCompression * 0.8 * skillFactor * trackConditionFactor * weightFactor;
   };
-
+  
+  const calculateSag = (riderWeight, sagSettingsRatio, baseSag) => {
+    const sagAdjustment = (riderWeight / 2.2) * 0.007 * sagSettingsRatio;
+    return Math.max(25, Math.min(110, baseSag + sagAdjustment)).toFixed(1);
+  };
+  const calculateAirForkPressure = (baseSettings, riderWeight, skillFactor, trackConditionFactor) => {
+    const airForkPressureAdjustment = (riderWeight - 175) * 0.05;
+    const adjustedAirForkPressure = baseSettings.baseAirForkPressure + airForkPressureAdjustment;
+    return Math.max(baseSettings.minAirForkPressure, Math.min(baseSettings.maxAirForkPressure, adjustedAirForkPressure)).toFixed(1);
+  };
   const calculateRebound = (baseSettings, riderWeight, skillFactor, trackConditionFactor) => {
-    return baseSettings.shockRebound * 1.1 * skillFactor * trackConditionFactor;
+    let weightFactor;
+  
+    if (riderWeight >= 175) {
+      weightFactor = riderWeight / 175;
+    } else if (riderWeight >= 130) {
+      weightFactor = riderWeight / 130;
+    } else if (riderWeight >= 110) {
+      weightFactor = riderWeight / 110;
+    } else if (riderWeight >= 90) {
+      weightFactor = riderWeight / 90;
+    } else {
+      weightFactor = riderWeight / 60;
+    }
+  
+    const rebound = baseSettings.shockRebound * 1.1 * skillFactor * trackConditionFactor * weightFactor;
+    const minRebound =  0; // adjust this value according to your constraints
+    const maxRebound = 14; // adjust this value according to your constraints
+    return Math.round(Math.max(minRebound, Math.min(maxRebound, rebound)));
   };
+  
+  
+  
+  
+  
 
-  const calculateSag = (riderWeight, sagSettingsRatio) => {
-    return Math.max(98, Math.min(110, 105 + (riderWeight / 2.2) * 0.0075 * sagSettingsRatio)).toFixed(1);
-  };
-
+  
   return (
     <Container maxWidth="sm">
       <Paper>
@@ -176,6 +212,7 @@ const SuspensionForm = () => {
               <MenuItem value="wp">WP Suspension</MenuItem>
               <MenuItem value="showa">Showa</MenuItem>
               <MenuItem value="kyb">KYB</MenuItem>
+              <MenuItem value="kyb">CARD "Cobra Only"</MenuItem>
             </Select>
           </FormControl>
           <FormControl fullWidth margin="normal">
@@ -210,22 +247,30 @@ const SuspensionForm = () => {
        Fork Rebound: {calculatedSettings.forkRebound} clicks
      </Typography>
      <Typography align="center">
-       High-Speed Compression: {calculatedSettings.highSpeedCompression} turns
-     </Typography>
-     <Typography align="center">
-       Low-Speed Compression: {calculatedSettings.lowSpeedCompression} clicks
-     </Typography>
+  High-Speed Compression: {calculatedSettings.highSpeedCompression} turns
+</Typography>
+<Typography align="center">
+  Low-Speed Compression: {calculatedSettings.lowSpeedCompression} clicks
+</Typography>
+
      <Typography align="center">
        Rebound: {calculatedSettings.rebound} clicks
      </Typography>
      <Typography align="center">
        Sag: {calculatedSettings.sag} mm
      </Typography>
-   </Box>
-    )}
+    {calculatedSettings.airForkPressure && (
+      <Typography align="center">
+        Air Fork Pressure: {calculatedSettings.airForkPressure} psi
+      </Typography>
+)}
+  </Box>
+)}
   </Paper>
 </Container>
 );
 };
 
 export default SuspensionForm;
+
+  
