@@ -55,9 +55,9 @@ const SuspensionForm = () => {
 
   const motorcycleBrands = ['Honda', 'Suzuki', 'Kawasaki', 'Yamaha', 'KTM','Cobra'];
   const motorcycleModels = {
-    Honda: ['CRF450R', 'CRF250R', 'CR250', 'CRF150R', 'CR85R', 'CRF110F', 'CRF50F'],
-    Suzuki: ['RM-Z450', 'RM-Z250', 'RM85', 'DR-Z50'],
-    Kawasaki: ['KX450', 'KX250', 'KX112', 'KLX110', 'KX85', 'KX65', 'KX50'],
+    Honda: ['CRF450R', 'CRF250R', 'CR250','02 CR125', 'CRF150R', 'CR85R', 'CRF110F', 'CRF50F'],
+    Suzuki: ['RM-Z450', 'RM-Z250','RM 250 Two Stroke', 'RM85', 'DR-Z50'],
+    Kawasaki: ['KX450F', 'KX250F','KX125', 'KX112', 'KLX110', 'KX85', 'KX65', 'KX50'],
     Yamaha: ['YZ450F', 'YZ250F', 'YZ250 2-stroke', 'YZ125 2-stroke','YZ85','YZ65', 'PW50'],
     KTM: ['500 EXC', '450 SX-F', '350 SX-F', '250 SX-F', '250 SX', '150 SX', '125 SX', '85 SX', '65 SX','50 SX', '50 SX Mini'],
     Cobra: ['Cobra 50 SX', 'Cobra 65 SX'], // Add Cobra models here
@@ -160,7 +160,7 @@ const SuspensionForm = () => {
     <Container maxWidth="sm">
       <Paper>
         <BubbleTypography variant="h5" align="center" gutterBottom>
-          Rider Input
+          MotoCross Rider Input
         </BubbleTypography>
         <Box component="form" onSubmit={handleSubmit}>
           {/* All your form fields go here */}

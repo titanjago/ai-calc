@@ -2,10 +2,10 @@ export const motorcycleBrands = ['Yamaha', 'Kawasaki', 'KTM', 'Honda', 'Suzuki',
 
 export const motorcycleModels = {
   Yamaha: ['YZ450F', 'YZ250F', 'YZ250 2-stroke', 'YZ125 2-stroke','YZ85', 'YZ65','PW50'],
-  Kawasaki: ['KX450', 'KX250', 'KX85', 'KX65', 'KX50', 'KLX110', 'KX112'],
+  Kawasaki: ['KX450', 'KX250','KX125', 'KX85', 'KX65', 'KX50', 'KLX110', 'KX112'],
   KTM: ['500 EXC','450 SX-F', '350 SX-F','250 SX-F','250 SX', '250 XC-W TPI', '150 XC-W TPI', '125 SX', '85 SX', '65 SX','50 SX', '50 SX Mini'],
-  Honda: ['CRF450R', 'CRF250R', 'CR250', 'CRF150R','CR85R', 'CRF110F', 'CRF50F'],
-  Suzuki: ['RM-Z450', 'RM-Z250', 'RM85', 'DR-Z50'],
+  Honda: ['CRF450R', 'CRF250R', 'CR250', '02 CR125','CRF150R','CR85R', 'CRF110F', 'CRF50F'],
+  Suzuki: ['RM-Z450', 'RM-Z250','RM250 Two Stroke','RM85', 'DR-Z50'],
   Cobra: ['Cobra 50 SX', 'Cobra 65 SX'], // Add Cobra models here
 };
 
@@ -17,8 +17,9 @@ export const motorcycleModels = {
     'YZ125 2-stroke': '94 kg',
     'YZ65': '60 kg',
     'PW50': '41 kg',
-    'KX450': '106 kg',
-    'KX250': '104 kg',
+    'KX450F': '106 kg',
+    'KX250F': '104 kg',
+    'KX125': '94 kg',
     'KX85': '75 kg',
     'KX65': '60 kg',
     'KX50': '47 kg',
@@ -38,13 +39,15 @@ export const motorcycleModels = {
     '250 SX': 'PLACEHOLDER kg', // Replace with the actual weight
     'CRF450R': '112 kg',
     'CRF250R': '105 kg',
-    'CR250': '100 kg', 
+    'CR250': '100 kg',
+    '02 CR125': '90 kg', 
     'CRF150R': '80 kg',
     'CR85': '75 kg',
     'CRF110F': '73 kg',
     'CRF50F': '50 kg',
     'RM-Z450': '112 kg',
     'RM-Z250': '106 kg',
+    'RM250 Two Stroke': '100 kg',
     'RM85': '74 kg',
     'DR-Z50': '54 kg',
     'Cobra 50 SX': 'PLACEHOLDER kg', // Replace with the actual weight
@@ -63,7 +66,7 @@ export const motorcycleModels = {
       medium: 1.1,
       hard: 1.2,
     },
-    'KX450': {
+    'KX450F': {
       sag: 103, // Replace with the correct sag value
       forkCompression: 11,
       forkRebound: 12,
@@ -72,7 +75,7 @@ export const motorcycleModels = {
       shockRebound: 10,
       baseWeight: 175, // average rider weight
     },
-    'KX250': {
+    'KX250F': {
       forkCompression: 11,
       forkRebound: 11,
       highSpeedCompression: 2.9, // Add high-speed compression value
@@ -80,6 +83,15 @@ export const motorcycleModels = {
       shockRebound: 11,
       baseWeight: 175, // average rider weight
       sag: 102,
+    },
+    'KX125': {
+      forkCompression: 12,
+      forkRebound: 8,
+      highSpeedCompression: 2.9, // Add high-speed compression value
+      lowSpeedCompression: 9, // Add low-speed compression value
+      shockRebound: 10,
+      baseWeight: 175, // average rider weight
+      sag: 102.5,
     },
     'KX112': {
       forkCompression: 11,
@@ -149,13 +161,23 @@ export const motorcycleModels = {
     },
     'CR250': {
       sag: 104,
-      forkCompression: 9,
+      forkCompression: 12,
+      forkRebound: 9,
+      highSpeedCompression: 5,
+      lowSpeedCompression: 4,
+      shockRebound: 5,
+      baseWeight: 160,
+    },
+    '02 CR125': {
+      sag: 104,
+      forkCompression: 8,
       forkRebound: 11,
       highSpeedCompression: 5.25,
-      lowSpeedCompression: 5,
-      shockRebound: 4,
+      lowSpeedCompression: 10,
+      shockRebound: 10,
       baseWeight: 175,
     },
+
     'CRF150R': {
       sag: 90,
       forkCompression: 9,
@@ -282,9 +304,9 @@ export const motorcycleModels = {
   forkRebound: 11,
   highSpeedCompression: 3.0,
     lowSpeedCompression: 8,
-    baseAirForkPressure: 153,
-    minAirForkPressure: 148,
-    maxAirForkPressure: 148,
+    baseAirForkPressure: 88,
+    minAirForkPressure: 85,
+    maxAirForkPressure: 92,
   shockRebound: 8,
   baseWeight: 110, // average rider weight
   sag: 84,
@@ -294,10 +316,9 @@ export const motorcycleModels = {
   forkRebound: 8,
   highSpeedCompression: 3.25,
     lowSpeedCompression: 8,
-
-    baseAirForkPressure: 153,
-    minAirForkPressure: 148,
-    maxAirForkPressure: 148,
+     baseAirForkPressure: 58,
+    minAirForkPressure: 58,
+    maxAirForkPressure: 61,
   shockRebound: 6,
   baseWeight: 90, // average rider weight
   sag: 70,
@@ -343,6 +364,15 @@ export const motorcycleModels = {
   baseWeight: 175, // average rider weight
   sag: 104,
   },
+  'RM250 Two Stroke': {
+    forkCompression: 15,
+    forkRebound: 11,
+    highSpeedCompression: 6,
+      lowSpeedCompression: 11,
+    shockRebound: 11,
+    baseWeight: 175, // average rider weight
+    sag: 104,
+    },
   'RM85': {
     sag: 105,
     forkCompression: 9,

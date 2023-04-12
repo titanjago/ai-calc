@@ -14,9 +14,11 @@ import ATVPage from './shared/ATVPage';
 import SnowPage from './shared/SnowPage';
 import OverlandPage from './shared/OverlandPage';
 import TechTipPage from './shared/TechTipPage';
+import Privateer from './shared/Privateer';
+import TrailPage from './shared/TrailPage';
+import EmailSignup from './Components/EmailSignup'; // Import the EmailSignup component
 
 import './App.css';
-
 
 function App() {
   return (
@@ -37,6 +39,9 @@ function App() {
             <Route path="/snow" element={<SnowPage />} />
             <Route path="/overland" element={<OverlandPage />} />
             <Route path="/techtip" element={<TechTipPage />} />
+            <Route path="/privateer" element={<Privateer />} />
+            <Route path="/trail" element={<TrailPage />} />
+            <Route path="/email-signup" element={<EmailSignup />} /> {/* Add the new route for EmailSignup */}
           </Routes>
         </main>
         <Footer />

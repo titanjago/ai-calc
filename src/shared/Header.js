@@ -42,6 +42,8 @@ const Header = () => {
       <NavLink component={Link} to="/snow">Snow</NavLink>
       <NavLink component={Link} to="/overland">Overland</NavLink>
       <NavLink component={Link} to="/techtip">Colt's TechTip</NavLink>
+      <NavLink component={Link} to="/privateer">Privateer Power</NavLink>
+      <NavLink component={Link} to="/trail">Trail</NavLink>
     </>
   );
 
@@ -57,6 +59,8 @@ const Header = () => {
   { text: 'Snow', to: '/snow' },
   { text: 'Overland', to: '/overland' },
   { text: "Colt's TechTip", to: '/techtip' },
+  { text: "Privateer Power", to: '/privateer' },
+  { text: "Trail", to: '/trail' },
 ].map((item, index) => (
   <ListItem button key={item.text} component={Link} to={item.to} onClick={handleDrawerToggle}>
     <NavLink>{item.text}</NavLink>
@@ -101,9 +105,9 @@ const Header = () => {
             borderColor: 'white',
             backgroundColor: 'transparent',
           }}
-          href="/login"
+          href="/email-signup"
         >
-          Login
+          JOIN FOR RELEASE UPDATES
         </Button>
         </Toolbar>
       </StyledAppBar>

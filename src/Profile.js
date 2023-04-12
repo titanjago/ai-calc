@@ -121,6 +121,7 @@ const Profile = () => {
       </GradientCard>
       <GradientCard>
         <Typography variant="h4" sx={{ mb: 2 }}>
+          Coming Soon..
           My Track Settings
         </Typography>
         <Box component="form" onSubmit={handleSettingsSubmit}>
@@ -177,4 +178,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
