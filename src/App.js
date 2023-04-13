@@ -17,6 +17,7 @@ import TechTipPage from './shared/TechTipPage';
 import Privateer from './shared/Privateer';
 import TrailPage from './shared/TrailPage';
 import EmailSignup from './Components/EmailSignup'; // Import the EmailSignup component
+import Humble from '../src/Components/Humble'; // Import the Humble component
 
 import './App.css';
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/privateer" element={<Privateer />} />
             <Route path="/trail" element={<TrailPage />} />
             <Route path="/email-signup" element={<EmailSignup />} /> {/* Add the new route for EmailSignup */}
+            <Route path="/humble" element={<Humble />} /> {/* Add the new route for Humble */}
           </Routes>
         </main>
         <Footer />
@@ -51,4 +53,3 @@ function App() {
 }
 
 export default App;
-

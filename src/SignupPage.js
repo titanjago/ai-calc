@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
-  Button,
   Container,
   CssBaseline,
-  Grid,
-  TextField,
   Typography,
   Card,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 import { styled } from "@mui/system";
+import MailchimpForm from "./MailchimpForm"; // Import MailchimpForm component
 
 const GradientCard = styled(Card)(({ theme }) => ({
   background: "linear-gradient(to right, gold, orange)",
@@ -20,16 +17,8 @@ const GradientCard = styled(Card)(({ theme }) => ({
 }));
 
 const SignupPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [welcomeVisible, setWelcomeVisible] = useState(false);
   const [racefansVisible, setRacefansVisible] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Call Firebase signup method here
-  };
 
   useEffect(() => {
     let interval = null;
@@ -112,84 +101,13 @@ const SignupPage = () => {
           }}
         >
           <GradientCard>
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              sx={{
-                width: "100%",
-                marginTop: 1,
-              }}
-            >
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus  inputProps={{ style: { fontFamily: "Impact, Charcoal, sans-serif", letterSpacing: "2px", color: "white" } }}
-                sx={{ "& label.Mui-focused": { color: "white" }, "& .MuiOutlinedInput-root": { "& fieldset": { borderColor: "white" }, "&:hover fieldset": { borderColor: "white" }, "&.Mui-focused fieldset": { borderColor: "white" } } }}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                inputProps={{ style: { fontFamily: "Impact, Charcoal, sans-serif", letterSpacing: "2px", color: "white" } }}
-                sx={{ "& label.Mui-focused": { color: "white" }, "& .MuiOutlinedInput-root": { "& fieldset": { borderColor: "white" }, "&:hover fieldset": { borderColor: "white" }, "&.Mui-focused fieldset": { borderColor: "white" } } }}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                id="confirmPassword"
-                autoComplete="confirm-password"
-                inputProps={{ style: { fontFamily: "Impact, Charcoal, sans-serif", letterSpacing: "2px", color: "white" } }}
-                sx={{ "& label.Mui-focused": { color: "white" }, "& .MuiOutlinedInput-root": { "& fieldset": { borderColor: "white" }, "&:hover fieldset": { borderColor: "white" }, "&.Mui-focused fieldset": { borderColor: "white" } } }}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, fontFamily: "Impact, Charcoal, sans-serif", letterSpacing: "2px", textTransform: "uppercase", backgroundColor: "orange", "&:hover": { backgroundColor: "gold" } }}
-              >
-                Sign Up
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link to="/forgot-password" variant="body2" sx={{ color: "white", fontFamily: "Impact, Charcoal, sans-serif", letterSpacing: "2px" }}>
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link to="/login" variant="body2" sx={{ color: "white", fontFamily: "Impact, Charcoal, sans-serif", letterSpacing: "2px" }}>
-                    {"Already have an account? Log In"}
-                  </Link>
-                </Grid>
-              </Grid>
-            </Box>
+            {/* Add MailchimpForm component */}
+            <MailchimpForm />
           </GradientCard>
         </Box>
       </Container>
     </Box>
-    );
-    };
-    
-    export default SignupPage;
+  );
+};
+
+export default SignupPage;

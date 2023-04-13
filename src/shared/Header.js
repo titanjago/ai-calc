@@ -102,10 +102,10 @@ const Header = () => {
           variant="outlined"
           style={{
             color: 'white',
-            borderColor: 'white',
+            borderColor: 'green',
             backgroundColor: 'transparent',
           }}
-          href="/email-signup"
+          href="/signup"
         >
           JOIN FOR RELEASE UPDATES
         </Button>

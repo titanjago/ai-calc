@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Typography, Box, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -25,6 +26,14 @@ const Footer = () => {
             sx={{ ml: 2 }}
           >
             Back
+          </Button>
+          <Button
+            component={Link}
+            to="/humble"
+            variant="outlined"
+            sx={{ ml: 2 }}
+          >
+            Our Story
           </Button>
         </Box>
         {selectedOption === "Terms of Service" && (
